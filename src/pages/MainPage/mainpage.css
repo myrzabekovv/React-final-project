@@ -1,0 +1,60 @@
+.container {
+  margin-top: 20px;
+}
+.container > h2 {
+  margin-top: 40px;
+  text-align: center;
+}
+
+
+.pc {
+  background-image: url(./pc.png);
+  height: 50vh;
+  width: 100%;
+  background-size: contain;
+  border-radius: 20px;
+}
+.iphone {
+  background-image: url(./iphone.png);
+}
+.headphones {
+  background-image: url(./headphones.png);
+}
+
+.pc div {
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
+  border-radius: 10px;
+  background-color: rgb(186, 121, 23);
+  width: 200px;
+  display: flex;
+  justify-content: center;
+  margin-top: 20%;
+  margin-left: 40px;
+}
+.pc h1 {
+  margin-left: 40px;
+  color: white;
+  font-weight: 800;
+  font-size: 40px;
+}
+.pc button {
+  width: 203px;
+  height: 44px;
+  border-radius: 50px;
+  border: none;
+  margin-left: 40px;
+}
+
+.slider {
+  width: 70%;
+}
+.slider .swiper-slide {
+  height: 50vh;
+  background-color: aqua;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px;
+}
