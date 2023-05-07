@@ -6,18 +6,20 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation'
 import { useEffect, useState } from 'react';
+import { getData } from '../../api/api';
 
 export const MainPage = () => {
 
-  const [items, setItems] = useState([])
-  const urlItems = 'https://644d1fcfcfdddac9709d8cdc.mockapi.io/api/items/items'
+  const [items, setItems] = useState()
 
 useEffect(() => {
-  fetch(urlItems)
-  .then(res => res.json())
-  .then(body => setItems(body))
+  getData().then((rew)=>{
+     setItems(rew.data)
+  })
+
 }, [])
-  console.log(items)
+  // console.log(items)
+
 
   return (
     <div className='container'>
@@ -57,10 +59,15 @@ useEffect(() => {
 
       <div className="catalog">
         {
-          items.map((item) => (
-            <ShopItem key={item.id} data={item}/>
-          ))
+          items && items.map((item) => {
+            // console.log(item);
+            return (
+          <ShopItem key={item?.id} data={item?.attributes}/>
+
+            )
+          })
         }
+        
       </div>
       
     </div>

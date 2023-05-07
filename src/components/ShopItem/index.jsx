@@ -1,5 +1,7 @@
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom"
 import styled from "styled-components"
+import {addBasket} from '../../store/basket'
 
 const ItemsContainer = styled.div`
   display: flex;
@@ -62,14 +64,19 @@ const Items = styled.div`
 `
 
 export const ShopItem = ({ data }) => {
+  const dispatch = useDispatch();
   return (
     <ItemsContainer>
-      <Items> 
-        <img src={data.img} alt={data.name} />
-        <span>{data.name}</span>
+      <Items key={data?.id}> 
+        <img src={data?.img} alt={data?.title} />
+        <span>{data.title}</span>
         <p>{data.price}</p>
-        <button>Положить в карзину</button>
-        <Link to={`${data.id}`}>Подробнее</Link>
+        <button 
+        onClick={() => {
+          dispatch(addBasket(data));
+        }}
+        >Положить в карзину</button>
+        <Link to={`/item/${data?.id}`}>Подробнее</Link>
      </Items>
     </ItemsContainer>
   )

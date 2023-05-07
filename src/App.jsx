@@ -4,6 +4,8 @@ import { MainPage } from './pages/MainPage/mainpage'
 import { ItemPage } from './pages/ItemPage/ItemPage'
 import { Layout } from './components/Layout/layout'
 import { Basket } from './pages/Basket/basket'
+import { NotFound } from './pages/NotFound'
+import { AuthPage } from './pages/AuthPage/auth'
 
 function App() {
 
@@ -12,10 +14,11 @@ function App() {
       <Routes>
         <Route path='/' element={<Layout />}>
           <Route index element={<MainPage/>}/>
-          <Route path='/item' element={<ItemPage/>}/>
+          <Route path='/item/:id' element={<ItemPage/>}/>
           <Route path='/basket' element={<Basket/>} />
         </Route>
-        <Route path="/admin" element={<div>Admin page</div>}/>
+        <Route path="/auth" element={<AuthPage/>}/>
+        <Route path="*" element={<NotFound />}/>
       </Routes>
     </BrowserRouter>
   )
