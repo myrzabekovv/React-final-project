@@ -36,3 +36,7 @@ export const RegUser = (data) => {
 export const getData = ()=>{
   return strapiAPI.get('items?populate=*').json()
 }
+
+export const changeData = (data) => {
+  return strapiAPI.put(`items/${data.id}`, { json: data }).json()
+}

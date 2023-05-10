@@ -38,6 +38,7 @@ const P = styled.p`
 
 const H1 = styled.h1`
   text-align: center;
+  margin-top: 6%;
 `;
 
 const Button = styled.button`
@@ -73,7 +74,7 @@ export const Basket = () => {
               <Cont>
                 <ImgWrap>
                 <div>item id: {item?.id}</div>
-                  <Img src={item?.img} alt={item?.title} />
+                  <Img src={item?.img?.url} alt={item?.title} />
                 </ImgWrap>
                 <Span>{item?.title}</Span>
                 <P>{item?.price}</P>

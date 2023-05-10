@@ -6,6 +6,7 @@ import { Layout } from './components/Layout/layout'
 import { Basket } from './pages/Basket/basket'
 import { NotFound } from './pages/NotFound'
 import { AuthPage } from './pages/AuthPage/auth'
+import { AdminPage } from './pages/AdminPanel/admin'
 
 function App() {
 
@@ -19,6 +20,7 @@ function App() {
         </Route>
         <Route path="/auth" element={<AuthPage/>}/>
         <Route path="*" element={<NotFound />}/>
+        <Route path='/admin'  element={<AdminPage/>}/>
       </Routes>
     </BrowserRouter>
   )

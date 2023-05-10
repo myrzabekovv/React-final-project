@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import { useParams } from "react-router"
 import styled from "styled-components";
 
-const itemsUrl = 'http://localhost:1337/api/items?populate=*/'
+const itemsUrl = 'http://localhost:1337/api/items'
 
 const ItemPageContainer = styled.div`
   display: flex;
@@ -46,21 +46,24 @@ const AddToCartButton = styled.button`
 export const ItemPage = () => {
   const { id } = useParams()
   const [data, setData] = useState(null)
-  console.log(data)
 
   useEffect(() => {
     // fetch на 1 товар по  id
     fetch(`${itemsUrl}/${id}`)
       .then(res => res.json())
-      .then(setData)
-  }, [])
+      .then((d) => {
+        setData(d.data)
+      })
+  }, [id])
+  console.log(data)
+  
 
   return (
     <ItemPageContainer>
-    <div>item id: {data.id}</div>
+    <div>item id: {data?.id}</div>
     <ItemTitle>{data?.title}</ItemTitle>
     <ItemPrice>{data?.price}</ItemPrice>
-    <ItemImage src={data?.img.data.attributes.url} alt={data?.name} />
+    <ItemImage src={data?.img?.data?.attributes?.url} alt={data?.title} />
     <AddToCartButton>Положить в карзину</AddToCartButton>
   </ItemPageContainer>
 )

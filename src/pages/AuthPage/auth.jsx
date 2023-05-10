@@ -35,7 +35,7 @@ export const AuthPage = () => {
         .then((resp) => {
           Cookie.set('key', resp.jwt)
           console.log(resp);
-          window.location.href = '/';
+          window.location.href = '/admin';
         })
         .catch((error) => {
           console.error(error)

@@ -60,9 +60,8 @@ useEffect(() => {
       <div className="catalog">
         {
           items && items.map((item) => {
-            // console.log(item);
             return (
-          <ShopItem key={item?.id} data={item?.attributes}/>
+          <ShopItem key={item?.id} data={item} />
 
             )
           })

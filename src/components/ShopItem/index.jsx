@@ -65,12 +65,14 @@ const Items = styled.div`
 
 export const ShopItem = ({ data }) => {
   const dispatch = useDispatch();
+  // console.log(data.attributes.img.data.attributes.url);
+  console.log(data?.img)
   return (
     <ItemsContainer>
       <Items key={data?.id}> 
-        <img src={data?.img} alt={data?.title} />
-        <span>{data.title}</span>
-        <p>{data.price}</p>
+        <img src={data?.img?.url} alt='ada' />
+        <span>{data?.title}</span>
+        <p>{data?.price}</p>
         <button 
         onClick={() => {
           dispatch(addBasket(data));
