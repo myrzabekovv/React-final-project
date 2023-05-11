@@ -74,9 +74,9 @@ export const Basket = () => {
               <Cont>
                 <ImgWrap>
                 <div>item id: {item?.id}</div>
-                  <Img src={item?.img?.url} alt={item?.title} />
+                  <Img src={item?.img} alt={'img'} />
                 </ImgWrap>
-                <Span>{item?.title}</Span>
+                <Span>{item?.name}</Span>
                 <P>{item?.price}</P>
                 <Button
                  onClick={() => {

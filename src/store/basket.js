@@ -29,4 +29,4 @@ export const basketSlice = createSlice({
 })
 
 
-export const {addBasket,removeTask} = basketSlice.actions
+export const {addBasket,removeTask,countAdd} = basketSlice.actions

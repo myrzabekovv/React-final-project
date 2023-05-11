@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import { useParams } from "react-router"
 import styled from "styled-components";
 
-const itemsUrl = 'http://localhost:1337/api/items'
+const itemsUrl = 'https://644d1fcfcfdddac9709d8cdc.mockapi.io/api/items/items'
 
 const ItemPageContainer = styled.div`
   display: flex;
@@ -28,20 +28,6 @@ const ItemPrice = styled.p`
   margin-bottom: 20px;
 `;
 
-const AddToCartButton = styled.button`
-  padding: 10px 20px;
-  font-size: 1.2rem;
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.2s ease-in-out;
-
-  &:hover {
-    background-color: #0062cc;
-  }
-`
 
 export const ItemPage = () => {
   const { id } = useParams()
@@ -52,20 +38,18 @@ export const ItemPage = () => {
     fetch(`${itemsUrl}/${id}`)
       .then(res => res.json())
       .then((d) => {
-        setData(d.data)
+        setData(d)
+        console.log(1, d)
       })
   }, [id])
-  console.log(data)
   
 
   return (
     <ItemPageContainer>
     <div>item id: {data?.id}</div>
-    <ItemTitle>{data?.title}</ItemTitle>
+    <ItemTitle>{data?.name}</ItemTitle>
     <ItemPrice>{data?.price}</ItemPrice>
-    <ItemImage src={data?.img?.data?.attributes?.url} alt={data?.title} />
-    <AddToCartButton>Положить в карзину</AddToCartButton>
+    <ItemImage src={data?.img} alt={'img'} />
   </ItemPageContainer>
 )
 }
-

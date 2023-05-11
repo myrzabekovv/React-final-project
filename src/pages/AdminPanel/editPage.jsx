@@ -1,40 +1,43 @@
 import styled from "styled-components";
 import { useEffect, useState } from "react";
-import { changeData, getData } from "../../api/api";
+import { changeData, deleteData } from "../../api/api";
 
 export const EditPage = ({data}) => {
- console.log(data)
+ 
    const [item, setItem] =useState({
-    img: null,
-    title: data?.title,
-    price: data?.price,
+    img: data?.img,
+    name: data?.name || '',
+    price: data?.price || '',
   })
-  useEffect(()=>{
-    getData(data)
-  },[data])
 
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    changeData(item)
+    changeData(data.id, item)
+    console.log('save',item)
   }
 
+  const handleDelete = () => {
+    deleteData(data.id)
+  }
+  
   return(
     <div key={data?.id}>
           <AdminEditPageWrapper>
             <form onSubmit={handleSubmit}>
-              <span>{data.title}</span>
-              <label htmlFor="title">Title</label>
-              <input type="text" name="title"  value={item.title} onChange={(e) => setItem({...item, title: e.target.value})} />
+              <span>{data.name}</span>
+              <label htmlFor="name">Title</label>
+              <input type="text" name="name"  value={item.name} onChange={(e) => setItem({...item, name: e.target.value})} />
 
               <label htmlFor="price">Price</label>
-              <input type="number" name="price"  value={item.price} onChange={(e) => setItem({...item, price: e.target.value})} />
+              <input type="text" name="price"  value={item.price} onChange={(e) => setItem({...item, price: e.target.value})} />
 
               <label htmlFor="img">Image URL</label>
-              <input type="file" name="img" onChange={(e) => setItem({...item, img: e.target.files[0]})} />
+              <input type="text" name="img" value={item.img} onChange={(e) => setItem({...item, img: e.target.value})} />
 
               <button type="submit">Save Changes</button>
             </form>
+            <button onClick={handleDelete}>Delete Item</button>
     </AdminEditPageWrapper>
     </div>
   )

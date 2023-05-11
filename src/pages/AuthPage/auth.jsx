@@ -1,60 +1,82 @@
 import styled from "styled-components";
 import { useState } from "react";
-import Cookie from 'js-cookie'
-import { getUserInfo, loginUser } from "../../api/api";
+import { useNavigate } from "react-router";
+// import Cookie from 'js-cookie'
+// import { getUserInfo, loginUser } from "../../api/api";
 
 export const AuthPage = () => { 
-  const [adminInfo] = useState({
-    token: Cookie.get('key'),
-    isConfirmed: false
-  })
+  // const [adminInfo] = useState({
+  //   token: Cookie.get('key'),
+  //   isConfirmed: false
+  // })
 
-  const [form, setForm] = useState({
-    identifier: '',
-    password: '',
-  })
+  // const [form, setForm] = useState({
+  //   identifier: '',
+  //   password: '',
+  // })
  
-  if (adminInfo.token) {
-    getUserInfo(adminInfo.token).then((resp) => {
-      if (resp.role.type === 'admin') {
-        adminInfo.isConfirmed = true
+  // if (adminInfo.token) {
+  //   getUserInfo(adminInfo.token).then((resp) => {
+  //     if (resp.role.type === 'admin') {
+  //       adminInfo.isConfirmed = true
+  //     }
+  //   })
+  // }
+
+  // const handleInput = (event) => {
+  //   setForm({
+  //     ...form,
+  //     [event.target.name]: event.target.value
+  //   })
+  // }
+
+  // const handleSubmit = (event) => {
+  //   event.preventDefault()
+  //     loginUser(form)
+  //       .then((resp) => {
+  //         Cookie.set('key', resp.jwt)
+  //         console.log(resp);
+  //         window.location.href = '/admin';
+  //       })
+  //       .catch((error) => {
+  //         console.error(error)
+  //       })
+  // }
+
+    const navigate = useNavigate()
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+  
+    const handleSubmit = (e) => {
+      e.preventDefault();
+      // Проверка аутентификации
+      if (username === 'admin' && password === 'admin123') {
+        // handleLogin();
+        navigate('/admin')
+      } else {
+        alert('Ошибка аутентификации. Доступ только для администратора!');
       }
-    })
-  }
-
-  const handleInput = (event) => {
-    setForm({
-      ...form,
-      [event.target.name]: event.target.value
-    })
-  }
-
-  const handleSubmit = (event) => {
-    event.preventDefault()
-      loginUser(form)
-        .then((resp) => {
-          Cookie.set('key', resp.jwt)
-          console.log(resp);
-          window.location.href = '/admin';
-        })
-        .catch((error) => {
-          console.error(error)
-        })
-  }
-
+    };
   
 
-    return (
-      <Container>
-        <Form onSubmit={handleSubmit}>
-          <Title>Вход в аккаунт</Title>
-          <Input required onChange={handleInput} value={form.identifier} name="identifier" type="email" placeholder="Логин" />
-          <Input  onChange={handleInput} value={form.password} name="password" type="password" placeholder="Пароль" />
-          <Button>Войти</Button>
-        </Form>
-      </Container>
-    );
-  };
+  return (
+    <form onSubmit={handleSubmit}>
+      <input
+        type="text"
+        placeholder="Имя пользователя"
+        value={username}
+        onChange={(e) => setUsername(e.target.value)}
+      />
+      <input
+        type="password"
+        placeholder="Пароль"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+      />
+      <button type="submit">Войти</button>
+    </form>
+  );
+};
   
   const Container = styled.div`
     display: flex;

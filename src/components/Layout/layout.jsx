@@ -1,6 +1,7 @@
 import { Link, Outlet } from "react-router-dom"
 import {AiOutlineShoppingCart} from 'react-icons/ai'
 import styled from "styled-components"
+import { useSelector } from "react-redux"
 
 const Header = styled.header`
   display: flex;
@@ -27,11 +28,12 @@ a {
 `
 
 export const Layout = () => {
+  const count = useSelector((store) => store.basket.count)
   return(
     <>
       <Header>
         <Link to='/'>Electro-nic</Link>
-        <Link style={{right: 130}} to='/basket'> <AiOutlineShoppingCart/> </Link>
+        <Link style={{right: 130}} to='/basket'> <span>{count}</span> <AiOutlineShoppingCart/> </Link>
       </Header>
       <Outlet/>
       <footer>

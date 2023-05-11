@@ -14,7 +14,7 @@ export const MainPage = () => {
 
 useEffect(() => {
   getData().then((rew)=>{
-     setItems(rew.data)
+     setItems(rew)
   })
 
 }, [])
