@@ -77,13 +77,14 @@ export const Basket = () => {
                   <Img src={item?.img} alt={'img'} />
                 </ImgWrap>
                 <Span>{item?.name}</Span>
-                <P>{item?.price}</P>
+                <P>{item?.price} <br /> {item?.count}</P>
                 <Button
                  onClick={() => {
                   dispatch(removeTask(item.id));
                 }}>
                   remove
                 </Button>
+                <span> {item?.price * item?.count} </span>
               </Cont>
             </div>
           )

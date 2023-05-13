@@ -21,6 +21,7 @@ const ItemTitle = styled.span`
   font-size: 1.5rem;
   font-weight: bold;
   margin-bottom: 10px;
+  margin-top: 10%;
 `;
 
 const ItemPrice = styled.p`
@@ -46,10 +47,10 @@ export const ItemPage = () => {
 
   return (
     <ItemPageContainer>
-    <div>item id: {data?.id}</div>
     <ItemTitle>{data?.name}</ItemTitle>
-    <ItemPrice>{data?.price}</ItemPrice>
     <ItemImage src={data?.img} alt={'img'} />
+    <ItemPrice>Цена товара: {data?.price}</ItemPrice>
+    <span>{data?.instock}</span>
   </ItemPageContainer>
 )
 }

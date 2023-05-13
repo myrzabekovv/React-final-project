@@ -1,10 +1,11 @@
 import './mainpage.css'
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
+import { Navigation, Pagination, Scrollbar, A11y, Autoplay } from 'swiper';
 import { ShopItem } from '../../components/ShopItem'
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation'
+import 'swiper/css/autoplay'
 import { useEffect, useState } from 'react';
 import { getData } from '../../api/api';
 
@@ -24,9 +25,10 @@ useEffect(() => {
   return (
     <div className='container'>
         <Swiper
-            modules={[Navigation, Pagination]}
+            modules={[Navigation, Pagination, Autoplay]}
             navigation={true}
             pagination={{ clickable: true }}
+            autoplay={{delay: 2500}}
             className='slider'
             spaceBetween={50}
             slidesPerView={1}

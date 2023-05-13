@@ -3,21 +3,17 @@ import { Link } from "react-router-dom"
 import styled from "styled-components"
 import {addBasket, countAdd} from '../../store/basket'
 
-const ItemsContainer = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-`
-
 const Items = styled.div`
   width: 300px;
+  height: 60vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   margin: 1rem;
   padding: 1rem;
-  border: 1px solid #ccc;
+  border: 1px solid #ccc none;
+  background-color: #ebad95;
   border-radius: 0.5rem;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
   
@@ -38,13 +34,13 @@ const Items = styled.div`
     font-size: 1rem;
     font-weight: bold;
     text-align: center;
-    color: #007bff;
+    color: #000000;
   }
 
   button {
     font-size: 1rem;
     font-weight: bold;
-    background-color: #007bff;
+    background-color: #048379;
     color: #fff;
     border: none;
     padding: 0.5rem 1rem;
@@ -66,10 +62,10 @@ const Items = styled.div`
 export const ShopItem = ({ data }) => {
   const dispatch = useDispatch();
   return (
-    <ItemsContainer>
+    <div>
       <Items key={data?.id}> 
         <img src={data?.img} alt='img' />
-        <span>{data?.title}</span>
+        <span>{data?.name}</span>
         <p>{data?.price}</p>
         <button 
         onClick={() => {
@@ -79,6 +75,6 @@ export const ShopItem = ({ data }) => {
         >Положить в карзину</button>
         <Link to={`/card/${data?.id}`}>Подробнее</Link>
      </Items>
-    </ItemsContainer>
+    </div>
   )
 }

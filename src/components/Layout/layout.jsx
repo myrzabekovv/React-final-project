@@ -37,7 +37,7 @@ export const Layout = () => {
       </Header>
       <Outlet/>
       <footer>
-
+        
       </footer>
     </>
   )

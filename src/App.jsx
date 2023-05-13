@@ -8,6 +8,7 @@ import { NotFound } from './pages/NotFound'
 import { AuthPage } from './pages/AuthPage/auth'
 import { AdminPage } from './pages/AdminPanel/admin'
 import { PostPage } from './pages/AdminPanel/createPage'
+import { EditPage } from './pages/AdminPanel/editPage'
 
 function App() {
 
@@ -22,6 +23,7 @@ function App() {
         <Route path="/auth" element={<AuthPage/>}/>
         <Route path="*" element={<NotFound />}/>
         <Route path='/admin'  element={<AdminPage/>}/>
+        <Route path='/edit/:id' element={<EditPage/>} />
         <Route path='/create' element={<PostPage/>} />
       </Routes>
     </BrowserRouter>

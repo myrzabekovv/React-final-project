@@ -1,7 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit'
-// import createApi from '@reduxjs/toolkit/query/react'
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-
 
 export const basketSlice = createSlice({
   name: 'basket',
@@ -12,7 +9,14 @@ export const basketSlice = createSlice({
   },
   reducers: {
     addBasket: (state, action) => {
-      state.basket.push(action.payload);
+      const existingItem = state.basket.find(item => item.id === action.payload.id);
+      if (existingItem) {
+        // Если элемент уже существует в корзине, увеличиваем его счетчик
+        existingItem.count += 1;
+      } else {
+        // Если элемент не существует, добавляем его в корзину
+        state.basket.push({ ...action.payload, count: 1 });
+      }
     },
     countAdd: (state) => {
       state.count++;
