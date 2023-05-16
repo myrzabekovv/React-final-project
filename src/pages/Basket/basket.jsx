@@ -2,93 +2,137 @@ import { useDispatch, useSelector } from "react-redux";
 import { removeTask } from "../../store/basket";
 
 import styled from 'styled-components';
+import { useState } from "react";
 
-const Img = styled.img`
-  max-width: 100%;
-  height: auto;
-  margin-bottom: 0.5rem;
+const BasketContainer = styled.div`
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f7f7f7;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 `;
 
-const ImgWrap = styled.div`
-  width: 300px;
+const Heading = styled.h1`
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+`;
+
+const Wrapper = styled.div`
+  padding-top: 20px;
+`;
+
+const ItemContainer = styled.div`
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: space-between;
-  margin: 1rem;
-  padding: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 0.5rem;
-  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  background-color: #fff;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 `;
 
-const Span = styled.span`
-  font-size: 1.2rem;
+const ImageWrap = styled.div`
+  width: 100px;
+  margin-right: 20px;
+`;
+
+const ItemImage = styled.img`
+  width: 100%;
+  height: auto;
+`;
+
+const ItemInfo = styled.div`
+  flex: 1;
+`;
+
+const ItemName = styled.span`
   font-weight: bold;
-  text-align: center;
-  margin-bottom: 0.5rem;
+  color: #333;
 `;
 
-const P = styled.p`
-  font-size: 1rem;
-  font-weight: bold;
-  text-align: center;
-  color: #007bff;
+const ItemPrice = styled.p`
+  margin: 5px 0;
+  color: #666;
 `;
 
-const H1 = styled.h1`
-  text-align: center;
-  margin-top: 6%;
-`;
-
-const Button = styled.button`
-  font-size: 1rem;
-  font-weight: bold;
-  background-color: #007bff;
+const RemoveButton = styled.button`
+  background-color: #e74c3c;
   color: #fff;
   border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 0.5rem;
+  padding: 5px 10px;
   cursor: pointer;
-  margin-top: 0.5rem;
+  border-radius: 5px;
 `;
 
-const Cont = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
+const TotalPrice = styled.div`
+  text-align: right;
+  margin-top: 20px;
+  font-weight: bold;
+  color: #333;
 `;
+
+const Button = styled.div`
+   font-size: 1rem;
+   width: 80px;
+    font-weight: bold;
+    background-color: transparent;
+    color: #000000;
+    border: 1px solid #000000;
+    padding: 3px 2rem;
+    cursor: pointer;
+    margin-top: 0.5rem;
+    transition-duration: 400ms;
+  
+    :hover {
+      background-color: #101f31;
+      color: white;
+      transition-duration: 400ms;
+    }
+`
 
 export const Basket = () => {
   const dispatch = useDispatch();
   const basket = useSelector((store) => store.basket.basket);
+  const [product, setProduct] = useState()
+  
+  const handleProduct = () => {
+    alert('Ваш заказ будет расмотрен менеджером')
+  }
   return (
-    <div>
-      <H1>Корзинка</H1>
-      {
-        basket.map((item) => {
-          console.log(item);
-          return (
-            <div key={item.id}>
-              <Cont>
-                <ImgWrap>
-                <div>item id: {item?.id}</div>
-                  <Img src={item?.img} alt={'img'} />
-                </ImgWrap>
-                <Span>{item?.name}</Span>
-                <P>{item?.price} <br /> {item?.count}</P>
-                <Button
-                 onClick={() => {
-                  dispatch(removeTask(item.id));
-                }}>
-                  remove
-                </Button>
-                <span> {item?.price * item?.count} </span>
-              </Cont>
-            </div>
-          )
-        })}
-    </div>
+    <Wrapper>
+    <BasketContainer>
+      <Heading>Корзинка</Heading>
+      {basket.map((item) => {
+        console.log(item);
+        return (
+          <ItemContainer key={item.id}>
+            <ImageWrap>
+              <ItemImage src={item?.img} alt="img" />
+            </ImageWrap>
+            <ItemInfo>
+              <ItemName>{item?.name}</ItemName>
+              <ItemPrice>
+                Цена: {item?.price} руб. <br /> Количество: {item?.count}
+              </ItemPrice>
+            </ItemInfo>
+            <RemoveButton
+              onClick={() => {
+                dispatch(removeTask(item.id));
+              }}
+            >
+              Удалить
+            </RemoveButton>
+            <span>{item?.price * item?.count} руб.</span>
+          </ItemContainer>
+        );
+      })}
+      <TotalPrice>
+        Общая сумма: {basket.reduce((total, item) => total + item.price * item.count, 0)} руб.
+      </TotalPrice>
+      <Button onClick={handleProduct}>ЗАКАЗАТЬ</Button>
+    </BasketContainer>
+    </Wrapper>
   );
 };

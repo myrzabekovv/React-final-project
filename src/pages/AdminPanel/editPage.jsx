@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import styled from "styled-components";
 import { changeData, deleteData, getDataDetail} from "../../api/api";
 
@@ -10,7 +10,9 @@ export const EditPage = () => {
   const [item, setForm] =useState({
    img: '',
    name: '',
-   price: ''
+   price: '',
+   instock: '',
+   about: ''
   })
 
   useEffect(()=> {
@@ -18,7 +20,9 @@ export const EditPage = () => {
     setForm({
       img: data?.img,
       name: data?.name,
-      price: data?.price
+      price: data?.price,
+      instock: data?.instock,
+      about: data?.about
     })
   },[data])
  
@@ -28,16 +32,13 @@ export const EditPage = () => {
   })
 },[])
 
-
+  const navigate = useNavigate()
 
  const handleSubmit = (e) => {
    e.preventDefault();
+   navigate('/admin')
    changeData(data?.id, item)
    console.log('save',item)
- }
-
- const handleDelete = () => {
-   deleteData(data?.id)
  }
 
  console.log(item)
@@ -66,6 +67,24 @@ export const EditPage = () => {
         />
       </FormGroup>
       <FormGroup>
+        <label htmlFor="insctock">InStock</label>
+        <Input
+          type="text"
+          name="instock"
+          value={item?.instock}
+          onChange={(e) => setForm({ ...item, instock: e.target.value })}
+        />
+      </FormGroup>
+      <FormGroup>
+        <label htmlFor="about">about</label>
+        <InputAbout
+          type="text"
+          name="about"
+          value={item?.about}
+          onChange={(e) => setForm({ ...item, about: e.target.value })}
+        />
+      </FormGroup>
+      <FormGroup>
         <label htmlFor="img">Image URL</label>
         <Input
           type="text"
@@ -76,27 +95,30 @@ export const EditPage = () => {
       </FormGroup>
       <Button type="submit">Save Changes</Button>
     </Form>
-    <Button onClick={handleDelete}>Delete Item</Button>
   </AdminEditPageWrapper>
 </div>
 );
 };
 
 const AdminEditPageWrapper = styled.div`
-background-color: #fff;
+background-color: #baadad;
 border-radius: 10px;
 box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 padding: 30px;
-width: 50%;
+width: 40%;
 `;
 
 const Form = styled.form`
 display: flex;
 flex-direction: column;
+gap: 20px;
 `;
 
 const FormGroup = styled.div`
 margin-bottom: 20px;
+display: flex;
+gap: 20px;
+align-items: center;
 `;
 
 const ItemName = styled.h2`
@@ -104,6 +126,15 @@ margin-bottom: 20px;
 font-size: 18px;
 font-weight: bold;
 `;
+
+const InputAbout = styled.input`
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  width: 50%;
+  height: 20vh;
+`
 
 const Input = styled.input`
 border: none;
@@ -116,6 +147,7 @@ const Button = styled.button`
 background-color: #0080ff;
 border: none;
 border-radius: 5px;
+width: 50%;
 color: #fff;
 cursor: pointer;
 padding: 10px;

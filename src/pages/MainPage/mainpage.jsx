@@ -22,6 +22,7 @@ useEffect(() => {
   // console.log(items)
 
 
+
   return (
     <div className='container'>
         <Swiper
@@ -37,21 +38,18 @@ useEffect(() => {
               <div className="pc">
                 <div>ОТ 20000 рублей</div>
                 <h1>Игровые Компьютеры</h1>
-                <button>ЗАКАЗАТЬ</button>
               </div>
             </SwiperSlide>
             <SwiperSlide>
               <div className='iphone pc'>
                 <div>От 40000 рублей</div>
                 <h1>Смартфоны</h1>
-                <button>ЗАКАЗАТЬ</button>
               </div>
             </SwiperSlide>
             <SwiperSlide>
               <div className='headphones pc'>
                 <div>От 10000 рублей</div>
                 <h1>Наушники</h1>
-                <button>ЗАКАЗАТЬ</button>
               </div>
             </SwiperSlide>
           </Swiper>
@@ -68,9 +66,7 @@ useEffect(() => {
             )
           })
         }
-        
       </div>
-      
     </div>
   )
 }

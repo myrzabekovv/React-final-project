@@ -10,18 +10,19 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@pbe/react-yandex-maps": "^1.2.4",
+    "@reduxjs/toolkit": "^1.9.5",
     "axios": "^1.4.0",
     "js-cookie": "^3.0.5",
     "ky": "^0.33.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router": "^6.10.0",
-    "react-router-dom": "^6.10.0",
-    "@reduxjs/toolkit": "^1.9.5",
-    "swiper": "^9.2.4",
     "react-icons": "^4.8.0",
     "react-redux": "^8.0.5",
-    "styled-components": "^5.3.10"
+    "react-router": "^6.10.0",
+    "react-router-dom": "^6.10.0",
+    "styled-components": "^5.3.10",
+    "swiper": "^9.2.4"
   },
   "devDependencies": {
     "@types/react": "^18.0.28",

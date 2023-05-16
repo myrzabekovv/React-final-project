@@ -1,0 +1,66 @@
+h2 {
+  text-align: center;
+  font-size: 30px;
+  margin-top: 10px;
+}
+
+.title-img {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 50px;
+}
+
+.title-img > img {
+  width: 80%;
+  height: 600px;
+  margin-top: 15px;
+}
+
+
+.about-image {
+  display: block;
+  margin: 0 auto;
+  width: 400px;
+  height: 300px;
+  object-fit: cover;
+}
+
+.about-container {
+  margin-top: 20px;
+  padding: 20px;
+  /* background-color: #f2f2f2; */
+}
+
+.about-description {
+  display: block;
+  text-align: justify;
+  margin-bottom: 20px;
+  font-size: 20px;
+}
+
+.about-card {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 20px;
+}
+
+.about {
+  background-color: white;
+  padding: 20px;
+}
+
+.about-title {
+  font-weight: bold;
+}
+
+.feedback {
+  display: flex;  
+  justify-content: space-around;
+}
+
+.feedback-contacts {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 20px;
+}

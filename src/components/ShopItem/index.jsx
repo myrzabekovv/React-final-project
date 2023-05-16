@@ -1,11 +1,12 @@
-import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom"
 import styled from "styled-components"
-import {addBasket, countAdd} from '../../store/basket'
+import { useState } from "react";
+import { ItemPage } from "../../pages/ItemPage/modal";
+import {  RiSearchLine  } from 'react-icons/ri';
+
 
 const Items = styled.div`
   width: 300px;
-  height: 60vh;
+  height: 35vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -13,14 +14,15 @@ const Items = styled.div`
   margin: 1rem;
   padding: 1rem;
   border: 1px solid #ccc none;
-  background-color: #ebad95;
+  background-color: rgba(226, 227, 228, 0.481);
   border-radius: 0.5rem;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
   
   img {
-    max-width: 100%;
-    height: auto;
+    width: 80%;
+    max-height: 50%;
     margin-bottom: 0.5rem;
+    object-fit: cover;
   }
 
   span {
@@ -40,13 +42,18 @@ const Items = styled.div`
   button {
     font-size: 1rem;
     font-weight: bold;
-    background-color: #048379;
-    color: #fff;
-    border: none;
-    padding: 0.5rem 1rem;
-    border-radius: 0.5rem;
+    background-color: transparent;
+    color: #000000;
+    border: 1px solid #000000;
+    padding: 3px 2rem;
     cursor: pointer;
     margin-top: 0.5rem;
+    transition-duration: 400ms;
+  }
+  button:hover {
+    background-color: #101f31;
+    color: white;
+    transition-duration: 400ms;
   }
 
   a {
@@ -59,22 +66,38 @@ const Items = styled.div`
   }
 `
 
+const Buttons = styled.div`
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin-top: auto;
+`
+
 export const ShopItem = ({ data }) => {
-  const dispatch = useDispatch();
+  const [modalActive, setModalActive] = useState(false)
+
   return (
     <div>
       <Items key={data?.id}> 
         <img src={data?.img} alt='img' />
         <span>{data?.name}</span>
-        <p>{data?.price}</p>
-        <button 
-        onClick={() => {
-          dispatch(addBasket(data));
-          dispatch(countAdd())
-        }}
-        >Положить в карзину</button>
-        <Link to={`/card/${data?.id}`}>Подробнее</Link>
-     </Items>
+        <p>Цена товара: {data?.price}</p>
+        <Buttons>
+            <button onClick={() => setModalActive(true)}>
+              <RiSearchLine  size={20} />
+              <span>Подробнее</span>
+            </button>
+        </Buttons>
+
+      </Items>
+      <ItemPage active={modalActive} setActive={setModalActive} id={data?.id}/>
     </div>
   )
 }
+
+
+
+
+
+
+
