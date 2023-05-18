@@ -51,30 +51,30 @@ export const About = () => {
         <h2>Обратная Связь</h2>
       </div>
       <div className="feedback">
-        <YMaps>
-          <div>
-            <Map defaultState={{center: [42.829379, 74.617993], zoom: 15 }} />
+        <YMaps className='map' >
+          <div className='map' >
+            <Map className='map'  defaultState={{center: [42.829379, 74.617993], zoom: 15 }}/>
           </div>
         </YMaps>
           <div className='feedback-contacts'>
             <div>
-                <FaPhone/> Наши номера
+            <FaPhone/> Наши номера
               <p>
                 +996 (700) 000 000 
                 <br />
-                +996 555 000 000
+                +996 (555) 000 000
               </p>
             </div>
             <div>
                 <FaEnvelope/> Наша почта
-              <p> electronic@gmail.com </p>
+              <p> <a style={{textDecoration: 'none', color: 'black'}} href="electronic@gmail.com"> electronic@gmail.com</a> </p>
             </div>
             <div>
                 <FaClock/> График работы 
               <p> ПН-СБ 10:00-22:00 </p>
             </div>
             <div>
-                <FaMapMarker color='black'/> Aдрес
+                <FaMapMarker/> Aдрес
               <p> 7 мкр возле ДСК </p>
             </div>
           </div>

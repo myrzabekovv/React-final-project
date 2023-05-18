@@ -13,6 +13,8 @@
     "@pbe/react-yandex-maps": "^1.2.4",
     "@reduxjs/toolkit": "^1.9.5",
     "axios": "^1.4.0",
+    "classnames": "^2.3.2",
+    "framer-motion": "^10.12.12",
     "js-cookie": "^3.0.5",
     "ky": "^0.33.3",
     "react": "^18.2.0",
@@ -21,6 +23,7 @@
     "react-redux": "^8.0.5",
     "react-router": "^6.10.0",
     "react-router-dom": "^6.10.0",
+    "react-scroll": "^1.8.9",
     "styled-components": "^5.3.10",
     "swiper": "^9.2.4"
   },

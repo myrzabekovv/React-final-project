@@ -77,12 +77,11 @@ export const EditPage = () => {
       </FormGroup>
       <FormGroup>
         <label htmlFor="about">about</label>
-        <InputAbout
-          type="text"
+        <Textarea   type="text"
           name="about"
           value={item?.about}
-          onChange={(e) => setForm({ ...item, about: e.target.value })}
-        />
+          onChange={(e) => setForm({ ...item, about: e.target.value })}>
+          </Textarea>
       </FormGroup>
       <FormGroup>
         <label htmlFor="img">Image URL</label>
@@ -99,6 +98,11 @@ export const EditPage = () => {
 </div>
 );
 };
+
+const Textarea = styled.textarea`
+  width: 350px;
+  height: 25vh;
+`
 
 const AdminEditPageWrapper = styled.div`
 background-color: #baadad;
@@ -132,7 +136,7 @@ const InputAbout = styled.input`
   border-radius: 5px;
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
   padding: 10px;
-  width: 50%;
+  width: 80%;
   height: 20vh;
 `
 
@@ -141,6 +145,7 @@ border: none;
 border-radius: 5px;
 box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
 padding: 10px;
+width: 60%;
 `;
 
 const Button = styled.button`

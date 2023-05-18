@@ -8,7 +8,16 @@
   flex-wrap: wrap;
   justify-content: space-around;
 }
-
+.container > input {
+  width: 12%;
+  /* height: 40px; */
+  border: none;
+  outline: none;
+  border: 2px solid #7d7d7e;
+  border-radius: 5px;
+  padding: 11px 30px;
+  margin-left: 25px;
+}
 
 .pc {
   background-image: url(./pc.png);
@@ -16,6 +25,9 @@
   width: 100%;
   background-size: contain;
   border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
 }
 .iphone {
   background-image: url(./iphone.png);
@@ -42,22 +54,28 @@
   font-weight: 800;
   font-size: 40px;
 }
-.pc button {
-  width: 203px;
-  height: 44px;
-  border-radius: 50px;
-  border: none;
-  margin-left: 40px;
-}
 
 .slider {
   width: 70%;
 }
 .slider .swiper-slide {
   height: 50vh;
-  background-color: aqua;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 20px;
+}
+
+@media screen and (max-width: 900px) {
+  .slider {
+    height: 350px;
+  }
+}
+@media screen and (max-width: 500px) {
+  .pc > h1 {
+    font-size: 20px;
+  }
+  .pc > div {
+    max-width: 80%;
+  }
 }

@@ -6,7 +6,7 @@ import {  RiSearchLine  } from 'react-icons/ri';
 
 const Items = styled.div`
   width: 300px;
-  height: 35vh;
+  height: 45vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -17,6 +17,7 @@ const Items = styled.div`
   background-color: rgba(226, 227, 228, 0.481);
   border-radius: 0.5rem;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 50px;
   
   img {
     width: 80%;

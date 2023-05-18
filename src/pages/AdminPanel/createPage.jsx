@@ -60,12 +60,11 @@ export const PostPage = () => {
         />
 
         <Label htmlFor="about">About</Label>
-        <Input
-          type="text"
+        <TextArea type="text"
           name="about"
           value={item.about}
-          onChange={handleChange}
-        />
+          onChange={handleChange}>
+          </TextArea>
         <Label htmlFor="img">Img</Label>
         <Input
           type="text"
@@ -118,12 +117,13 @@ const Input = styled.input`
 `;
 
 const TextArea = styled.textarea`
-  width: 300px;
+  width: 350px;
   height: 200px;
   margin-bottom: 20px;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
+  outline: none;
 `;
 
 const Button = styled.button`

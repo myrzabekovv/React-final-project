@@ -10,6 +10,7 @@ import { useEffect, useState } from 'react';
 import { getData } from '../../api/api';
 
 export const MainPage = () => {
+  
 
   const [items, setItems] = useState()
 
@@ -19,8 +20,12 @@ useEffect(() => {
   })
 
 }, [])
-  // console.log(items)
 
+  const [searchItem, setSearchItem] = useState('')
+
+  const filteredItems = items && items.filter((item) =>
+  item.name.toLowerCase().includes(searchItem.toLowerCase())
+);
 
 
   return (
@@ -54,12 +59,16 @@ useEffect(() => {
             </SwiperSlide>
           </Swiper>
 
-
       <h2>КАТАЛОГ ТОВАРОВ</h2>
+      <input
+           type="text"
+           placeholder="Поиск"
+           onChange={(event) => setSearchItem(event.target.value)}
+           />
 
       <div className="catalog">
         {
-          items && items.map((item) => {
+           filteredItems && filteredItems.map((item) => {
             return (
           <ShopItem key={item?.id} data={item} />
 
