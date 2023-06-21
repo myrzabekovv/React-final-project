@@ -7,6 +7,7 @@ import {FaPhone, FaEnvelope, FaMapMarker} from 'react-icons/fa'
 import { useState } from "react"
 import { getData } from "../../api/api"
 import { MainPage } from "../../pages/MainPage/mainpage"
+import Hamburger from '../../../node_modules/hamburger-react'
 
 
 const Header = styled.header`
@@ -71,7 +72,7 @@ const Logo = styled.span`
 
 export const Layout = () => {
   const count = useSelector((store) => store.basket.count)
-  const [burger , setBurger] = useState(false)
+  const [isOpen, setOpen] = useState(false)
 
   return(
     <>
@@ -84,20 +85,40 @@ export const Layout = () => {
         </Links>
         <Link className="basket" style={{right: 130}} to='/basket'> <span>{count}</span> <AiOutlineShoppingCart/> </Link>
 
-        <div className="setburger" onClick={() => setBurger(!burger)}>
+        {/* <div className="setburger" onClick={() => setBurger(!burger)}>
           <div className="burger"></div>
           <div className="burger"></div>
           <div className="burger"></div>
-        </div>
+        </div> */}
 
-        <div className="burger-nav" style={burger ? {display: 'block'} : {display: 'none'}}>
+<Hamburger color="white" toggled={isOpen} toggle={setOpen} />
+
+        {/* <div className="burger-nav" style={burger ? {display: 'block'} : {display: 'none'}}>
           <Links>
             <Link to='/'>Главная</Link>
             <Link to='/about'>О нас</Link>
             <Link to='contacts'>Контакты</Link>
           </Links>
           <Link className="basket" style={{right: 130}} to='/basket'> <span>{count}</span> <AiOutlineShoppingCart/> </Link>
-        </div>
+        </div> */}
+
+{/* {isOpen ? (
+  <div className="burger-nav">
+    <Links>
+      <Link to="/">Главная</Link>
+      <Link to="/about">О нас</Link>
+      <Link to="contacts">Контакты</Link>
+    </Links>
+    <Link className="basket"  to="/basket">
+      <span>{count}</span> <AiOutlineShoppingCart />
+    </Link>
+  </div>
+) : null} */}
+
+
+{isOpen ? (
+<h1>sad</h1>
+): null}
 
       </Header>
       <Content>

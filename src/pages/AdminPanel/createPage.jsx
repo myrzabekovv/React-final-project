@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { useNavigate } from 'react-router';
 
 export const PostPage = () => {
+  // 1. Создание состояний item и errors
   const [item, setItem] = useState({
     name: '',
     price: '',
@@ -11,13 +12,25 @@ export const PostPage = () => {
     instock: '',
     about: ''
   });
+  const [errors, setErrors] = useState({})
 
+  // 2. Импорт функции навигации
   const navigate = useNavigate()
 
+  // 3. Функция, вызываемая при отправке формы
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // 4. Проверка наличия ошибок
+    if (hasErrors()) {
+      return;
+    }
+
+    // 5. Навигация на страницу "/admin"
     navigate('/admin')
+
     try {
+       // 6. Отправка данных нового продукта на сервер
       const createdItem = await postData(item);
       console.log('Создан новый элемент:', createdItem);
     } catch (error) {
@@ -25,17 +38,43 @@ export const PostPage = () => {
     }
   };
 
+  // 7. Функция, вызываемая при изменении полей ввода
   const handleChange = (e) => {
-    setItem({
-      ...item,
-      [e.target.name]: e.target.value,
-    });
+    const { name, value } = e.target;
+
+     // Обновление состояний item и errors
+    setItem((prevItem) => ({
+      ...prevItem,
+      [name]: value
+    }));
+    setErrors((prevErrors) => ({
+      ...prevErrors,
+      [name]: value.trim() === '' ? 'Заполните поле' : ''
+    }))
   };
+
+  // 8. Функция для проверки наличия ошибок
+  const hasErrors = () => {
+    const newErrors = {};
+
+    Object.keys(item).forEach((key) => {
+      if (item[key].trim() === '') {
+        newErrors[key] = 'Заполните поле';
+      }
+    });
+
+    // Обновление состояния errors
+    setErrors(newErrors);
+    return Object.keys(newErrors).length > 0;
+  };
+
 
   return (
     <Container>
       <Title>ADD NEW PRODUCT</Title>
       <Form onSubmit={handleSubmit}>
+
+        {errors && <p style={{ color: 'red' }}>{errors.name}</p>}
         <Label htmlFor="title">Title</Label>
         <Input
           type="text"
@@ -44,6 +83,7 @@ export const PostPage = () => {
           onChange={handleChange}
         />
 
+       {errors && <p style={{ color: 'red' }}>{errors.price}</p>}
         <Label htmlFor="price">Price</Label>
         <Input
           type="number"
@@ -51,6 +91,8 @@ export const PostPage = () => {
           value={item.price}
           onChange={handleChange}
         />
+
+        {errors && <p style={{ color: 'red' }}>{errors.instock}</p>}
         <Label htmlFor="instock">inSctock</Label>
         <Input
           type="text"
@@ -59,12 +101,15 @@ export const PostPage = () => {
           onChange={handleChange}
         />
 
+        {errors && <p style={{ color: 'red' }}>{errors.about}</p>}
         <Label htmlFor="about">About</Label>
         <TextArea type="text"
           name="about"
           value={item.about}
           onChange={handleChange}>
           </TextArea>
+
+          {errors && <p style={{ color: 'red' }}>{errors.img}</p>}
         <Label htmlFor="img">Img</Label>
         <Input
           type="text"
@@ -78,12 +123,13 @@ export const PostPage = () => {
     </Container>
   );
 };
+
 const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 40px;
-  background-color: #eee1e1;
+  background-color: #5d5b5bb8;
 `;
 
 const Title = styled.h1`

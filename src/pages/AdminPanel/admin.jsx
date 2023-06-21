@@ -26,6 +26,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   gap: 20px;
+  background-color: #5d5b5bb8;
 `
 
 export const AdminPage = () => {

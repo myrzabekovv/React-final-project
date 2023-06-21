@@ -15,6 +15,14 @@ export const EditPage = () => {
    about: ''
   })
 
+  const [errors, setErrors] = useState({
+    img: false,
+    name: false,
+    price: false,
+    instock: false,
+    about: false
+  })
+
   useEffect(()=> {
     if(!data) return
     setForm({
@@ -29,17 +37,33 @@ export const EditPage = () => {
  useEffect(()=>{
   getDataDetail(params.id).then((res)=>{
     setData(res)
+    setForm(res || item)
   })
-},[])
+},[params.id])
 
   const navigate = useNavigate()
 
  const handleSubmit = (e) => {
    e.preventDefault();
-   navigate('/admin')
-   changeData(data?.id, item)
-   console.log('save',item)
+   if (validateForm()){
+     navigate('/admin')
+     changeData(data?.id, item)
+     console.log('save',item)
+   }
  }
+
+ const validateForm = () => {
+  const newErrors = {
+    name: item.name === '',
+    price: item.price === '',
+    instock: item.instock === '',
+    about: item.about === '',
+    img: item.img === ''
+  };
+  setErrors(newErrors);
+  return Object.values(newErrors).every((error) => !error);
+}
+ 
 
  console.log(item)
  
@@ -48,6 +72,7 @@ export const EditPage = () => {
   <AdminEditPageWrapper>
     <Form onSubmit={handleSubmit}>
       <ItemName>{data?.name}</ItemName>
+      {errors.name && <p style={{color: 'red'}} >Please enter a title</p>}
       <FormGroup>
         <label htmlFor="name">Title</label>
         <Input
@@ -57,6 +82,7 @@ export const EditPage = () => {
           onChange={(e) => setForm({ ...item, name: e.target.value })}
         />
       </FormGroup>
+      {errors.price && <p style={{color: 'red'}}>Please enter a title</p>}
       <FormGroup>
         <label htmlFor="price">Price</label>
         <Input
@@ -66,6 +92,7 @@ export const EditPage = () => {
           onChange={(e) => setForm({ ...item, price: e.target.value })}
         />
       </FormGroup>
+      {errors.instock && <p style={{color: 'red'}}>Please enter a title</p>}
       <FormGroup>
         <label htmlFor="insctock">InStock</label>
         <Input
@@ -75,6 +102,7 @@ export const EditPage = () => {
           onChange={(e) => setForm({ ...item, instock: e.target.value })}
         />
       </FormGroup>
+      {errors.about && <p>Please enter a title</p>}
       <FormGroup>
         <label htmlFor="about">about</label>
         <Textarea   type="text"
@@ -83,6 +111,7 @@ export const EditPage = () => {
           onChange={(e) => setForm({ ...item, about: e.target.value })}>
           </Textarea>
       </FormGroup>
+      {errors.img && <p style={{color: 'red'}}>Please enter a title</p>}
       <FormGroup>
         <label htmlFor="img">Image URL</label>
         <Input

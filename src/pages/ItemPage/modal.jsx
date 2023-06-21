@@ -78,9 +78,17 @@ export const ItemPage = ({active, setActive, id}) => {
       });
   }, [id]);
 
-  const handleCloseOverlay = (e) => {
-    
+  const handleCloseOverlay = (e) => { 
     setActive(false)
+  }
+
+  const handleAddToBasket = () => {
+    if(data?.instock === 'В наличии'){
+      dispatch(addBasket(data));
+      dispatch(countAdd())
+    } else {
+      alert('товара нет в наличии')
+    }
   }
   return (
     <div className={active ? 'modal active' : 'modal'} onClick={handleCloseOverlay}>
@@ -96,10 +104,7 @@ export const ItemPage = ({active, setActive, id}) => {
             <div className="instock-button">
               <ItemStock inStock={data?.instock}>{data?.instock === 'В наличии' ? "В наличии" : "Нет в наличии"}</ItemStock>
               <Button 
-                onClick={() => {
-                  dispatch(addBasket(data));
-                  dispatch(countAdd())
-                }}>
+                onClick={handleAddToBasket}>
                   <RiShoppingCart2Line size={20} />
                   Положить в корзину
                 </Button>

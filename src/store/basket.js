@@ -22,12 +22,25 @@ export const basketSlice = createSlice({
       state.count++;
     },
     removeTask: (state, action) => {
-      const index = state.basket.findIndex((item) => {
-        return item.id === action.payload;
-      });
-      const [removed] = state.basket.splice(index, 1);
-      state.trush.push(removed);
-      state.count--;
+      // Найти индекс элемента, который нужно удалить, в массиве корзины (basket)
+      const index = state.basket.findIndex(item => item.id === action.payload)
+      // Проверить, был ли найден элемент
+      if(index !== 1) {
+        // Сохранить удаленный элемент в переменную
+        const removedItem = state.basket[index]
+        // Проверить, если количество элемента больше 1
+        if(removedItem.count > 1) {
+            // Если количество больше 1, уменьшить счетчик на 1
+            removedItem.count -= 1
+        } else {
+          // Если количество равно 1, удалить элемент из массива корзины
+          state.basket.splice(index, 1)
+        }
+        // Добавить удаленный элемент в массив "trush" (вероятно, мусор)
+        state.trush.push(removedItem)
+        // Уменьшить общий счетчик на 1
+        state.count--;
+      }
     },
   }
 })

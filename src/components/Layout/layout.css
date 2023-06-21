@@ -43,21 +43,21 @@
   height: 2px;
 } */
 
-.burger {
+/* .burger {
   border-top: 2px solid black;
   display: none;
   width: 25px;
   margin-top: 6px;
-}
+} */
 .burger-nav {
   display: none;
   width: 20%;
   background-color: black;
   height: 100%;
 }
-.setburger {
+/* .setburger {
   display: none;
-}
+} */
 
 @media screen and (max-width: 600px) {
   .upper-footer-inner {
@@ -74,7 +74,7 @@
   .basket {
     display: none;
   }
-  .burger {
+  /* .burger {
     display: block;
   }
   .burger-nav {
@@ -82,5 +82,6 @@
   }
   .setburger {
     display: block;
-  }
+  } */
+
 }
